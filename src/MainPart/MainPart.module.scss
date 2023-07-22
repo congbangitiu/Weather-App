@@ -1,0 +1,322 @@
+.wrapper {
+    width: 70%;
+    height: 950px;
+    background-color: #100e1d;
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+}
+
+.inner {
+    width: 80%;
+    height: 90%;
+    margin-top: 46px;
+}
+
+.switchTemperatureBtns {
+    display: flex;
+    justify-content: end;
+}
+
+.switchTemperatureBtns p {
+    width: 40px;
+    height: 40px;
+    border-radius: 54px;
+    margin-top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.Cdegree {
+    color: #e7e7eb;
+    background-color: #585676;
+    margin-right: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #67667a;
+        transform: scale(1.1);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.Fdegree {
+    color: #e7e7eb;
+    background-color: #585676;
+    margin-left: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #67667a;
+        transform: scale(1.1);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.Cdegree.active {
+    color: #67667a;
+    background-color: #e7e7eb;
+}
+
+.Fdegree.active {
+    color: #67667a;
+    background-color: #e7e7eb;
+}
+
+.futureDays {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.nextDay {
+    width: 140px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1e213a;
+    border-radius: 10px;
+    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.nextDay p {
+    color: #e7e7eb;
+    font-size: 16px;
+}
+
+.weatherIcon {
+    width: 80px;
+}
+
+.temperature {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -2px;
+}
+
+.todayHightLights {
+    margin-top: 50px;
+}
+
+.todayHightLights h1 {
+    color: #e7e7eb;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.factorsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.factors {
+    display: grid;
+    grid-template-columns: auto auto; //số lượng "auto" bằng số hàng, grid sẽ tự chia đều số lượng thẻ mỗi hàng
+    gap: 40px;
+}
+
+.factor {
+    padding: 20px;
+    background-color: #3c47e9;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 15px;
+
+    width: 300px;
+    height: 190px;
+    background-color: #1e213a;
+    padding-top: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.visibility,
+.air {
+    height: 150px;
+}
+
+.status {
+    color: #e7e7eb;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.statistics {
+    display: flex;
+}
+
+.statistics p {
+    color: #e7e7eb;
+    height: 30px;
+}
+
+.value {
+    margin: 10px 0 0 0;
+    font-size: 64px;
+    font-weight: 700;
+}
+
+.unit {
+    font-size: 32px;
+    font-weight: 500;
+    margin-left: 15px;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+}
+
+.navigationIcon {
+    width: 30px;
+    height: 30px;
+    font-size: 18;
+    background-color: #585676;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 20px;
+}
+
+.navigation p {
+    color: #e7e7eb;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.metricBar {
+    width: 230px;
+    margin-top: -2px;
+}
+
+.number {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.metricBar p {
+    color: #a09fb1;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 5px 0;
+}
+
+.scale {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background-color: #e7e7eb;
+}
+
+.level {
+    height: 100%;
+    border-radius: 20px;
+    background-color: #ffec65;
+}
+
+.metricBar:last-child p {
+    display: flex;
+    justify-content: end;
+}
+
+/* RESPONSIVE */
+//Tablet
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+    .wrapper {
+        width: 492px;
+        height: 1100px;
+    }
+    .inner {
+        width: 90%;
+    }
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .futureDays {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 10px;
+    }
+    .nextDay {
+        margin-bottom: 10px;
+    }
+    .todayHightLights {
+        margin-top: 0;
+        margin-right: 10px;
+    }
+    .factors {
+        display: flex;
+        flex-direction: column;
+    }
+    .factor {
+        width: 200px;
+        height: 150px;
+    }
+    .status {
+        font-size: 15px;
+    }
+    .value {
+        font-size: 50px;
+    }
+    .unit {
+        font-size: 25px;
+    }
+    .metricBar {
+        width: 180px;
+        margin-top: -5px;
+    }
+    .visibility,
+    .air {
+        height: 120px;
+    }
+}
+// Mobile
+@media (max-width: 46.1875em) {
+    .wrapper {
+        width: 390px;
+        height: 1850px;
+    }
+    .futureDays {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 20px;
+    }
+
+    .factors {
+        display: flex;
+        flex-direction: column;
+    }
+}
