@@ -26,7 +26,7 @@ function MainPart({ selectedCity, onDegreeChange }) {
 
     useEffect(() => {
         fetch(
-            `https://api.openweathermap.org/data/2.5/forecast?appid=5caf59265a678ca70e57d4763ad8ddcc&q=${selectedCity}&units=${degree}`,
+            `https://api.openweathermap.org/data/2.5/forecast?appid=5caf59265a678ca70e57d4763ad8ddcc&q=${selectedCity}&units=${degree}`
         )
             .then((res) => res.json())
             .then((res) => {

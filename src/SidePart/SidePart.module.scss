@@ -203,8 +203,6 @@
     margin-left: 5px;
 }
 
-
-
 /* RESPONSIVE */
 //Tablet
 @media (min-width: 46.25em) and (max-width: 63.9375em) {
@@ -228,7 +226,8 @@
     .unit {
         font-size: 60px;
     }
-    .cloudIcon12, .cloudIcon34 {
+    .cloudIcon12,
+    .cloudIcon34 {
         width: 200px;
     }
     .cloudIcon1 {
@@ -247,9 +246,76 @@
 // Mobile
 @media (max-width: 46.1875em) {
     .wrapper {
-        width: 390px;
+        width: 100%;
+        height: 100%;
     }
-    .cloudIcon12, .cloudIcon34 {
-        width: 400px;
+
+    .searchBtn {
+        width: 500px;
+        height: 100px;
+        margin-left: 100px;
+        margin-top: 60px;
+    }
+    .searchBtn icon {
+        display: none;
+    }
+    .searchBtn p {
+        font-size: 50px;
+    }
+    .gpsIcon {
+        display: none;
+    }
+    .cloudIcon12,
+    .cloudIcon34 {
+        width: 1500px;
+        margin: 0;
+    }
+    .cloudIcon1 {
+        width: 600px;
+    }
+    .cloudIcon2 {
+        width: 500px;
+    }
+    .cloudIcon3 {
+        width: 600px;
+    }
+    .cloudIcon4 {
+        width: 500px;
+    }
+    .weatherIcon {
+        width: 600px;
+        margin: -100px;
+    }
+    .value {
+        font-size: 400px;
+    }
+    .unit {
+        font-size: 250px;
+    }
+    .description {
+        font-size: 150px;
+        margin-top: 200px;
+    }
+    .footer {
+        margin-top: 150px;
+    }
+    .currentDay {
+        width: 500px;
+        font-size: 60px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .location {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .marker {
+        display: none;
+    }
+    .name {
+        margin-left: 5px;
+        font-size: 60px;
     }
 }
