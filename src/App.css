@@ -18,6 +18,7 @@ h1, p {
 /* Tablet */
 @media (min-width: 46.25em) and (max-width: 63.9375em) {
     .App {
+        width: 820px;
         height: 1180px;
     }
 }

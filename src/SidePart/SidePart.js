@@ -31,7 +31,7 @@ function SidePart({ onSearchButtonClick, selectedCity, degree }) {
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <button className={cx('searchBtn')} onClick={() => handleSearchButtonClick()}>
-                    <icon>
+                    <icon className={cx('searchIcon')}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <g clip-path="url(#clip0_1_215)">
                                 <path

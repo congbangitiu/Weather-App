@@ -253,8 +253,8 @@
 //Tablet
 @media (min-width: 46.25em) and (max-width: 63.9375em) {
     .wrapper {
-        width: 492px;
-        height: 1100px;
+        width: 60%;
+        height: 100%;
     }
     .inner {
         width: 90%;
@@ -271,7 +271,7 @@
         margin-left: 10px;
     }
     .nextDay {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
     .todayHightLights {
         margin-top: 0;
@@ -322,13 +322,14 @@
     .futureDays {
         display: grid;
         grid-template-columns: auto auto;
-        gap: 50px;
+        gap: 60px;
     }
 
     .nextDay {
         width: 600px;
         height: 700px;
         border-radius: 20px;
+        margin-right: 15px;
     }
     .nextDay p {
         font-size: 60px;
@@ -375,7 +376,14 @@
         margin-left: 15px;
     }
     .navigationIcon {
-        display: none;
+        width: 80px;
+        height: 80px;
+        border-radius: 100px;
+        margin-right: 20px;
+    }
+    .navigationIcon svg {
+        width: 60px;
+        height: 60px;
     }
     .navigation p {
         font-size: 60px;
