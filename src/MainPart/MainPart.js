@@ -169,7 +169,7 @@ function MainPart({ selectedCity, onDegreeChange, isCurrentLocation, formattedCu
                                 <div className={cx('factor', 'visibility')}>
                                     <p className={cx('status')}>Visibility</p>
                                     <div className={cx('statistics')}>
-                                        <p className={cx('value')}>{weatherData?.[0]?.visibility}</p>
+                                        <p className={cx('value')}>{weatherData?.[0]?.visibility / 1000}</p>
                                         <p className={cx('unit')}>miles</p>
                                     </div>
                                 </div>

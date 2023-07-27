@@ -5,9 +5,9 @@ import React, { useState, useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
-function SidePart({ onSearchButtonClick, selectedCity, degree, onCurrentLocationClick, formattedCurrentCity }) {
+function SidePart({ onSearchButtonClick, selectedCity, degree, onCurrentLocationClick, formattedCurrentCity, isSelectedCity, setIsSelectedCity }) {
+    
     const [weatherData, setWeatherData] = useState(null);
-    const [isSelectedCity, setIsSelectedCity] = useState(false);
 
     const handleSearchButtonClick = () => {
         onSearchButtonClick(true);
@@ -19,17 +19,10 @@ function SidePart({ onSearchButtonClick, selectedCity, degree, onCurrentLocation
 
     const handleCurrentLocationClick = () => {
         onCurrentLocationClick();
-        setIsSelectedCity(false);
-        console.log(formattedCurrentCity);
+        setIsSelectedCity(!isSelectedCity);
     };
 
     useEffect(() => {
-        // if (selectedCity && degree) {
-
-        // }
-        console.log(selectedCity);
-        console.log(isSelectedCity);
-        console.log(formattedCurrentCity);
         fetch(
             `https://api.openweathermap.org/data/2.5/forecast?appid=5caf59265a678ca70e57d4763ad8ddcc&q=${
                 isSelectedCity ? selectedCity : formattedCurrentCity
@@ -37,7 +30,6 @@ function SidePart({ onSearchButtonClick, selectedCity, degree, onCurrentLocation
         )
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
                 setWeatherData(res.list);
             })
             .catch((error) => {

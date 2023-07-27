@@ -6,7 +6,7 @@ import * as searchService from '../services/searchService';
 
 const cx = classNames.bind(styles);
 
-function SearchPart({ onCloseButtonClick, onCitySelect }) {
+function SearchPart({ onCloseButtonClick, onCitySelect, isSelectedCity, setIsSelectedCity }) {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [filteredCities, setFilteredCities] = useState([]);
@@ -61,6 +61,7 @@ function SearchPart({ onCloseButtonClick, onCitySelect }) {
         setSelectedCity(cityName);
         onCitySelect(encodeURIComponent(cityName)); // Mã hóa tên thành phố trước khi truyền lên App component
         onCloseButtonClick();
+        setIsSelectedCity(true);
     };
 
     const handleCityHoverIn = (cityName) => {

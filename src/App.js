@@ -12,9 +12,10 @@ function App() {
     const [currentCity, setCurrentCity] = useState('');
 
     const [formattedCurrentCity, setFormattedCurrentCity] = useState();
-    const [isSelectedCity, setIsSelectedCity] = useState(true);
+    const [isSelectedCity, setIsSelectedCity] = useState(false);
     const [isCurrentLocation, setIsCurrentLocation] = useState(false);
     const [isLoading, setLoading] = useState(false);
+    
 
     const handleSearchButtonClick = () => {
         setSearchPartVisible(true);
@@ -104,10 +105,12 @@ function App() {
                     isCurrentLocation={!isSelectedCity}
                     onCurrentLocationClick={handleCurrentLocationClick}
                     formattedCurrentCity={formattedCurrentCity}
+                    isSelectedCity={isSelectedCity}
+                    setIsSelectedCity={setIsSelectedCity}
                 />
             )}
             {isSearchPartVisible && (
-                <SearchPart onCloseButtonClick={() => handleClosedButtonClick()} onCitySelect={handleCitySelect} />
+                <SearchPart onCloseButtonClick={() => handleClosedButtonClick()} onCitySelect={handleCitySelect} setIsSelectedCity={setIsSelectedCity}/>
             )}
             <MainPart
                 selectedCity={selectedCity}
