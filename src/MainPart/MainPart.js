@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
-function MainPart({ selectedCity, onDegreeChange }) {
+function MainPart({ selectedCity, onDegreeChange, isCurrentLocation, formattedCurrentCity }) {
     const [weatherData, setWeatherData] = useState(null);
     const [degree, setDegree] = useState('metric');
     const [isCelsiusClicked, setIsCelsiusClicked] = useState(true);
@@ -25,17 +25,31 @@ function MainPart({ selectedCity, onDegreeChange }) {
     };
 
     useEffect(() => {
-        fetch(
-            `https://api.openweathermap.org/data/2.5/forecast?appid=5caf59265a678ca70e57d4763ad8ddcc&q=${selectedCity}&units=${degree}`
-        )
-            .then((res) => res.json())
-            .then((res) => {
-                setWeatherData(res.list);
-            })
-            .catch((error) => {
-                console.error('Error fetching weather data:', error);
-            });
-    }, [selectedCity, degree]);
+        if (!isCurrentLocation && selectedCity && degree) {
+            fetch(
+                `https://api.openweathermap.org/data/2.5/forecast?appid=5caf59265a678ca70e57d4763ad8ddcc&q=${selectedCity}&units=${degree}`,
+            )
+                .then((res) => res.json())
+                .then((res) => {
+                    setWeatherData(res.list);
+                })
+                .catch((error) => {
+                    console.error('Error fetching weather data:', error);
+                });
+        } 
+        else if (isCurrentLocation && formattedCurrentCity && degree) {
+            fetch(
+                `https://api.openweathermap.org/data/2.5/forecast?appid=5caf59265a678ca70e57d4763ad8ddcc&q=${formattedCurrentCity}&units=${degree}`,
+            )
+                .then((res) => res.json())
+                .then((res) => {
+                    setWeatherData(res.list);
+                })
+                .catch((error) => {
+                    console.error('Error fetching weather data:', error);
+                });
+        }
+    }, [selectedCity, formattedCurrentCity, degree, isCurrentLocation]);
 
     return (
         <div className={cx('wrapper')}>
@@ -65,7 +79,7 @@ function MainPart({ selectedCity, onDegreeChange }) {
                             weatherData.slice(1, 6).map((dayData, index) => {
                                 const currentDate = new Date();
                                 const nextDate = new Date(currentDate.getTime() + (index + 1) * 24 * 60 * 60 * 1000);
-    
+
                                 return (
                                     <div className={cx('nextDay')} key={index}>
                                         <p>{index === 0 ? 'Tomorrow' : nextDate.toLocaleDateString()}</p>
@@ -76,17 +90,19 @@ function MainPart({ selectedCity, onDegreeChange }) {
                                         />
                                         <div className={cx('temperature')}>
                                             <p>
-                                                {Math.round(dayData.main.temp_max)}&deg;{degree === 'metric' ? 'C' : 'F'}
+                                                {Math.round(dayData.main.temp_max)}&deg;
+                                                {degree === 'metric' ? 'C' : 'F'}
                                             </p>
                                             <p>
-                                                {Math.round(dayData.main.temp_min)}&deg;{degree === 'metric' ? 'C' : 'F'}
+                                                {Math.round(dayData.main.temp_min)}&deg;
+                                                {degree === 'metric' ? 'C' : 'F'}
                                             </p>
                                         </div>
                                     </div>
                                 );
                             })}
                     </div>
-    
+
                     <div className={cx('todayHightLights')}>
                         <h1>Today&rsquo;s Highlights </h1>
                         <div className={cx('factorsContainer')}>
@@ -127,7 +143,7 @@ function MainPart({ selectedCity, onDegreeChange }) {
                                         <p>WSW</p>
                                     </div>
                                 </div>
-    
+
                                 <div className={cx('factor', 'humidity')}>
                                     <p className={cx('status')}>Humidity</p>
                                     <div className={cx('statistics')}>
@@ -149,7 +165,7 @@ function MainPart({ selectedCity, onDegreeChange }) {
                                         <p>%</p>
                                     </div>
                                 </div>
-    
+
                                 <div className={cx('factor', 'visibility')}>
                                     <p className={cx('status')}>Visibility</p>
                                     <div className={cx('statistics')}>
@@ -157,7 +173,7 @@ function MainPart({ selectedCity, onDegreeChange }) {
                                         <p className={cx('unit')}>miles</p>
                                     </div>
                                 </div>
-    
+
                                 <div className={cx('factor', 'air')}>
                                     <p className={cx('status')}>Air Pressure</p>
                                     <div className={cx('statistics')}>

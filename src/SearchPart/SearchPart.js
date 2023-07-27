@@ -22,13 +22,13 @@ function SearchPart({ onCloseButtonClick, onCitySelect }) {
     };
 
     const handleInitialBlank = (e) => {
-        const searchValue = e.target.value;
-        if (!searchValue.startsWith(' ')) {
-            setSearchValue(searchValue);
+        const searchInput = e.target.value;
+        if (searchInput.trim() || !e.nativeEvent.data || e.nativeEvent.data !== ' ') {
+            setSearchValue(searchInput);
         }
-    }
-    
-    const handleInputChange = (value) => {      
+    };
+
+    const handleInputChange = (value) => {
         if (value !== searchValue) {
             setSearchValue(value);
         }
@@ -58,9 +58,9 @@ function SearchPart({ onCloseButtonClick, onCitySelect }) {
     };
 
     const handleCityClick = (cityName) => {
+        setSelectedCity(cityName);
         onCitySelect(encodeURIComponent(cityName)); // Mã hóa tên thành phố trước khi truyền lên App component
         onCloseButtonClick();
-        console.log(encodeURIComponent(cityName));
     };
 
     const handleCityHoverIn = (cityName) => {
@@ -105,10 +105,9 @@ function SearchPart({ onCloseButtonClick, onCitySelect }) {
 
     // Đặt giới hạn 1 phần chữ hiện ra khi tên quá dài -> ví dụ "southern ..."
     const isCityNameTooLong = (cityName) => {
-        return cityName.length > 50; 
+        return cityName.length > 50;
     };
 
-   
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -166,8 +165,10 @@ function SearchPart({ onCloseButtonClick, onCitySelect }) {
                             spellCheck={false}
                             onKeyDown={handleKeyDown}
                             onChange={(e) => {
-                                handleInitialBlank(e);
-                                handleInputChange(e.target.value); 
+                                if (e.target.value !== ' ' || searchValue.trim()) {
+                                    handleInitialBlank(e);
+                                    handleInputChange(e.target.value);
+                                }
                             }}
                         />
                     </div>
