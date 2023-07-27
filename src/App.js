@@ -14,6 +14,7 @@ function App() {
     const [formattedCurrentCity, setFormattedCurrentCity] = useState();
     const [isSelectedCity, setIsSelectedCity] = useState(true);
     const [isCurrentLocation, setIsCurrentLocation] = useState(false);
+    const [isLoading, setLoading] = useState(false);
 
     const handleSearchButtonClick = () => {
         setSearchPartVisible(true);
@@ -62,6 +63,7 @@ function App() {
                 },
                 (error) => {
                     console.log('Something went wrong getting your position!');
+                    setLoading(false);
                 },
             );
         }
@@ -73,19 +75,24 @@ function App() {
                 .then((res) => res.json())
                 .then((res) => {
                     setCurrentCity(res.address);
+                    console.log(res.address);
+                    setFormattedCurrentCity(encodeURIComponent(removeDiacritics(res.address.city)))
+                    setLoading(false);
                 })
                 .catch((error) => {
                     console.error('Error fetching location data:', error);
+                    setLoading(false);
                 });
         }
     }, [lat, long]);
 
     useEffect(() => {
-        if (lat && long) {
+        if (!isLoading && lat && long) {
             setFormattedCurrentCity(encodeURIComponent(removeDiacritics(currentCity?.city)));
             setIsSelectedCity(false);
         }
-    }, [lat, long]);
+        getUserCoordinates();
+    }, [isLoading, formattedCurrentCity, lat, long]);
 
     return (
         <div className="App">
@@ -96,8 +103,7 @@ function App() {
                     degree={currentDegree}
                     isCurrentLocation={!isSelectedCity}
                     onCurrentLocationClick={handleCurrentLocationClick}
-                    // onGetUserCoordinates={getUserCoordinates}
-                    formattedCurrentCity = {formattedCurrentCity}
+                    formattedCurrentCity={formattedCurrentCity}
                 />
             )}
             {isSearchPartVisible && (

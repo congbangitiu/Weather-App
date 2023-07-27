@@ -23,7 +23,7 @@ h1, p {
     }
 }
 /* Mobile */
-@media (max-width: 46.1875em) {
+@media (max-width: 46.25em) {
     .App {
         width: 100em;
         flex-direction: column;

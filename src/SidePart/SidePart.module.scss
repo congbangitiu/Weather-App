@@ -205,6 +205,12 @@
     align-items: center;
 }
 
+.currentDay p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .dayMonthYear {
 }
 

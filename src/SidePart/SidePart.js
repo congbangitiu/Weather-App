@@ -7,81 +7,46 @@ const cx = classNames.bind(styles);
 
 function SidePart({ onSearchButtonClick, selectedCity, degree, onCurrentLocationClick, formattedCurrentCity }) {
     const [weatherData, setWeatherData] = useState(null);
-    const [currentCity, setCurrentCity] = useState('');
-    // const [formattedCurrentCity, setFormattedCurrentCity] = useState('');
-    const [isSelectedCity, setIsSelectedCity] = useState(true);
+    const [isSelectedCity, setIsSelectedCity] = useState(false);
 
     const handleSearchButtonClick = () => {
         onSearchButtonClick(true);
     };
 
-    const [lat, setLat] = useState(null);
-    const [long, setLong] = useState(null);
-
-    const removeDiacritics = (inputString) => {
-        return diacritic.clean(inputString);
-    };
-
-    const handleCurrentLocationClick = () => {
-        // onGetUserCoordinates();
-        onCurrentLocationClick();
-        setIsSelectedCity(false);
-        console.log(formattedCurrentCity)
-    };
-    // const geolocationAPI = navigator.geolocation;
-    // const getUserCoordinates = () => {
-    //     if (!geolocationAPI) {
-    //         console.log('Geolocation API is not available in your browser!');
-    //     } else {
-    //         geolocationAPI.getCurrentPosition(
-    //             (position) => {
-    //                 const { coords } = position;
-    //                 setLat(coords.latitude);
-    //                 setLong(coords.longitude);
-    //                 setIsSelectedCity(false);
-    //                 setFormattedCurrentCity(encodeURIComponent(removeDiacritics(currentCity?.city)));
-    //             },
-    //             (error) => {
-    //                 console.log('Something went wrong getting your position!');
-    //             },
-    //         );
-    //     }
+    // const removeDiacritics = (inputString) => {
+    //     return diacritic.clean(inputString);
     // };
 
-    // useEffect(() => {
-    //     if (lat && long) {
-    //         fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}`)
-    //             .then((res) => res.json())
-    //             .then((res) => {
-    //                 setCurrentCity(res.address);
-    //             })
-    //             .catch((error) => {
-    //                 console.error('Error fetching location data:', error);
-    //             });
-    //     }
-    // }, [lat, long]);
+    const handleCurrentLocationClick = () => {
+        onCurrentLocationClick();
+        setIsSelectedCity(false);
+        console.log(formattedCurrentCity);
+    };
 
     useEffect(() => {
-        if (selectedCity && degree) {
-            fetch(
-                `https://api.openweathermap.org/data/2.5/forecast?appid=5caf59265a678ca70e57d4763ad8ddcc&q=${
-                    isSelectedCity ? selectedCity : formattedCurrentCity
-                }&units=${degree}`,
-            )
-                .then((res) => res.json())
-                .then((res) => {
-                    setWeatherData(res.list);
-                })
-                .catch((error) => {
-                    console.error('Error fetching weather data:', error);
-                });
-        }
+        // if (selectedCity && degree) {
+
+        // }
+        console.log(selectedCity);
+        console.log(isSelectedCity);
+        console.log(formattedCurrentCity);
+        fetch(
+            `https://api.openweathermap.org/data/2.5/forecast?appid=5caf59265a678ca70e57d4763ad8ddcc&q=${
+                isSelectedCity ? selectedCity : formattedCurrentCity
+            }&units=${degree}`,
+        )
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res);
+                setWeatherData(res.list);
+            })
+            .catch((error) => {
+                console.error('Error fetching weather data:', error);
+            });
     }, [isSelectedCity, selectedCity, formattedCurrentCity, degree]);
 
     const temperature = weatherData?.[0]?.main?.temp;
     const description = weatherData?.[0]?.weather?.[0]?.description;
-
-    
 
     return (
         <div className={cx('wrapper')}>
