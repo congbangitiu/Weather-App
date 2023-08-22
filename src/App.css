@@ -16,16 +16,16 @@ h1, p {
 
 /* RESPONSIVE */
 /* Tablet */
-@media (min-width: 46.25em) and (max-width: 63.9375em) {
+@media (min-width: 641px) and (max-width: 960px) {
     .App {
         width: 820px;
         height: 1180px;
     }
 }
 /* Mobile */
-@media (max-width: 46.25em) {
+@media (max-width: 640px) {
     .App {
-        width: 100em;
+        width: 100vw;
         flex-direction: column;
     }
 }
