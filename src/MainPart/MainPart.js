@@ -82,7 +82,7 @@ function MainPart({ selectedCity, onDegreeChange, isCurrentLocation, formattedCu
 
                                 return (
                                     <div className={cx('nextDay')} key={index}>
-                                        <p>{index === 0 ? 'Tomorrow' : nextDate.toLocaleDateString()}</p>
+                                        <p className={cx('title')}>{index === 0 ? 'Tomorrow' : nextDate.toLocaleDateString()}</p>
                                         <img
                                             className={cx('weatherIcon')}
                                             src={`https://openweathermap.org/img/wn/${weatherData[index]?.weather[0]?.icon}@2x.png`}

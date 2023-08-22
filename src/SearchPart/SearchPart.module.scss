@@ -211,8 +211,8 @@
         height: 98%;
     }
     .closedBtn {
-        width: 25px;
-        height: 25px;
+        width: 28px;
+        height: 28px;
         border-radius: 5px;
 
         &:active {
@@ -227,7 +227,10 @@
         width: 220px;
         height: 48px;
     }
-
+    // .searchInput icon {
+    //     width: 20px;
+    //     height: 24px;
+    // }
     .searchInput svg {
         width: 24px;
         height: 24px;
@@ -237,7 +240,6 @@
         font-size: 16px;
         display: flex;
         flex: 1;
-        width: 100px;
     }
 
     .searchBtn {
